@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\components",
+    "\\app\\reducers",
+    "\\db",
+    "\\db\\models",
+    "\\public",
+    "\\server",
+    "\\wireframes"
+  ],
+  "SelectedNode": "\\db\\models\\index.js",
+  "PreviewInSolutionExplorer": false
+}
