@@ -1,20 +1,56 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { acts, stateProps, fetchThings, deleteThing } from '../reducers';
+
+const mapState = ({ students }) => ({ students });
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
+        fetchInitialData: () => {            
+            dispatch(fetchThings(stateProps.STUDENTS, acts.GET_STUDENTS));
+        },
         handleAdd: function (event) {
 
+        },
+        handleRemove: function (event) {
+            var sure = confirm("Are you sure? Students should only be removed in event of expulsion or untimely demise.");
+            if (sure) dispatch(deleteThing(stateProps.STUDENTS, acts.REMOVE_STUDENT, event.target.parentElement.getAttribute("class")));            
         }
     }
 };
 
-export default connect(null, mapDispatchToProps)(Students);
-
 class Students extends Component {
-    render() {
-        <ul>
 
-        </ul>
+    componentDidMount() {
+        this.props.fetchInitialData();
+    }
+
+    render() {
+        return <div className="students">
+            <h2>Students</h2>
+            <table className="table table-striped table-hover col-sm-11">
+                <thead>
+                    <tr className="row">
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Campus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {console.log(this.props.students)}
+                    {this.props.students.map(student =>
+                        <tr key={student.id} className="row">
+                            <td>{student.id}</td>
+                            <td><a href={`/students/${student.id}`}>{student.name}</a></td>
+                            <td><a href={`/campuses/${student.Campus.id}`}>{student.Campus.name}</a></td>
+                            <td className={student.id}><button className="btn btn-default" id="x" onClick={this.props.handleRemove}>X</button></td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        </div>
     }
 }
+
+export default withRouter(connect(mapState, mapDispatchToProps)(Students));

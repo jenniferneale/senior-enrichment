@@ -3,30 +3,31 @@ import WinterJokes from './WinterJokes';
 import NavBar from './NavBar';
 import createHistory from 'history/createBrowserHistory';
 import Campuses from './Campuses';
+import Students from './Students';
+import Campus from './Campus';
+import Student from './Student';
 import { fetchThings, stateProps, acts } from '../reducers';
+import { connect } from 'react-redux';
+import { Route, Switch, Redirect, withRouter, Link } from 'react-router';
 
 class Root extends Component {
 
-    componentDidMount() {
-        this.props.fetchInitialData();
-    }
-
     render() {
         return <div>
-            <h1>WHATWHAT BITCHES</h1>            
+            <h1>WHATWHAT BITCHES</h1>
             <NavBar />
             <WinterJokes />
-            <Campuses />
+            <Switch>                
+                <Route exact path='/campuses' component={Campuses} />
+                <Route exact path='/students' component={Students} />
+                <Route path='/campuses/:id' component={Campus} />
+                <Route path='/students/:id' component={Student} />
+                <Redirect to='/campuses' />
+            </Switch>
         </div>
     }
 }
 
-const mapDispatch = dispatch => ({
-    fetchInitialData: () => {
-        dispatch(fetchThings('campuses',acts.GET_CAMPUSES));
-        dispatch(fetchThings());
-        // what other data might we want to fetch on app load?
-    }
-});
 
-export default connect(null, mapDispatch)(Root);
+
+export default withRouter(connect(null, null)(Root));

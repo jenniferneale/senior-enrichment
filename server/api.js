@@ -9,18 +9,65 @@ const { Student, Campus } = require('../db/models');
 api.get('/hello', (req, res) => res.send({hello: 'world'}))
 
 api.get('/students', (req, res, next) => {
-    Student.findAll()
-        .then(result => result.data)
+    Student.findAll({ include: [{ all: true }] })
         .then(result => res.status(200).send(result))
+        .catch(console.error);
+})
+
+api.get('/students/:id', (req, res, next) => {
+    Student.findOne({
+        where: { id: req.params.id },
+        include: [{ all: true }]
+    })
+        .then(result => res.status(200).send(result))
+        .catch(console.error);
+})
+
+api.post('/students', (req, res, next) => {
+    Student.create({
+        name: req.body.name,
+        email: req.body.email
+    }).then(result => res.status(201).send(result))
+        .catch(console.error);
+})
+
+api.delete('/students/:id', (req, res, next) => {
+    Student.destroy({
+        where: { id: req.params.id }        
+    })
+        .then(() => res.status(200).send(req.params.id))
         .catch(console.error);
 })
 
 api.get('/campuses', (req, res, next) => {
-    Campus.findAll()
-        .then(result => result.data)
+    Campus.findAll({ include: [{ all: true }] })        
         .then(result => res.status(200).send(result))
         .catch(console.error);
 })
 
+api.get('/campuses/:id', (req, res, next) => {
+    Campus.findOne({
+        where: { id: req.params.id },
+        include: [{ all: true }]
+    })
+        .then(result => res.status(200).send(result))
+        .catch(console.error);
+})
+
+api.post('/campuses', (req, res, next) => {
+    Campus.create({
+        name: req.body.name,
+        image: req.body.image
+    }).then(result => res.status(201).send(result))
+        .catch(console.error);
+})
+
+api.delete('/campuses/:id', (req, res, next) => {
+    Campus.destroy({
+        where: { id: req.params.id }
+    })
+        .then(result => res.status(200).send(req.params.id))
+        .catch(console.error);
+})
 
 module.exports = api

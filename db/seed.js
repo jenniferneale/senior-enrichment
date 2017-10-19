@@ -6,8 +6,8 @@ db.sync({ force: true })
     .then(() => {
         Campus.bulkCreate([
             { name: 'Terra', image: 'https://c2.staticflickr.com/4/3712/14294653894_62fc3498b7_b.jpg' },
-            { name: 'Luna', image: 'https://cdn.pixabay.com/photo/2017/02/23/17/56/moon-2092807_1280.jpg' },
-            { name: 'Mars', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Aqueduct_below_Rochester_Historical_Society_in_Rochester%2C_NY.JPG/1024px-Aqueduct_below_Rochester_Historical_Society_in_Rochester%2C_NY.JPG' },
+            { name: 'Luna', image: 'moon-2092807_1280.jpg' },
+            { name: 'Mars', image: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Crossing_the_Aqueduct._-_geograph.org.uk_-_31580.jpg' },
             { name: 'Titan', image: 'http://i.telegraph.co.uk/multimedia/archive/01107/aquarium_1107958i.jpg' }
         ]);
     })
@@ -30,7 +30,7 @@ db.sync({ force: true })
             { name: 'Q', email: 'qcontinuum@fullstack.edu', CampusId: 4 },
         ]);            
     })
-    .then(() => {
+    /*.then(() => {
         db.close();
         return null;
-    });
+    })*/.catch(console.error);

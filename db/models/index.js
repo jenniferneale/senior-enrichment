@@ -17,6 +17,10 @@ const Student = db.define('Student', {
     email: {
         type: STRING,
         isEmail: true
+    },
+    status: {
+        type: STRING,
+        defaultValue: "In Good Standing"
     }
 })
 
@@ -28,6 +32,10 @@ const Campus = db.define('Campus', {
     },
     image: {
         type: STRING
+    },
+    status: {
+        type: STRING,
+        defaultValue: "Secured"
     }
 })
 
