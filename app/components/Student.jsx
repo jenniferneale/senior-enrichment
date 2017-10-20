@@ -28,13 +28,15 @@ class Student extends Component {
 
     render() {
         const student = this.props.currentStudent;
-        return <form onSubmit={this.props.handleUpdate} >
-            <label>Name: {student.name}</label>
-            <label>Email: {student.email}</label>
-            <label>Campus: {student.Campus.name}</label>
-            <label>Status: {student.status}</label>
-            <button className={`{student.id} btn`}  onClick={this.props.handleRemove} > Delete</button>
-            </form>
+        if(student && student.name) return <form onSubmit={this.props.handleUpdate} >
+            <p><label>Name: {student.name}</label></p>
+            <p><label>Email: {student.email}</label></p>
+            <p><label>Campus: {student.Campus.name}</label></p>
+            <p><label>Status: {student.status}</label></p>
+            <button className={`{student.id} btn`} onClick={this.props.handleRemove} > Delete</button>
+            <button className={`{student.id} btn`} onClick={this.props.handleUpdate} > Move Campuses</button>
+        </form>
+        else return <div></div>
     }
 }
 

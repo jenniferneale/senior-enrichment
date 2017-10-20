@@ -5,6 +5,9 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom';
 import store from './store'
 import Root from './components/Root'
+import Bootstrap from 'bootstrap';
+import BootstrapReact from 'react-bootstrap';
+import $ from 'jquery';
 
 render(
     <Provider store={store}>

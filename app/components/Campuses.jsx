@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, NavLink, Link } from 'react-router';
+import { withRouter, NavLink, Link } from 'react-router-dom';
 import { fetchThings, stateProps, acts } from '../reducers';
 
-const mapState = ({ campuses }) => ({ campuses });
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        fetchInitialData: () => {
-            dispatch(fetchThings(stateProps.CAMPUSES, acts.GET_CAMPUSES));            
-        },
-        handleAdd: function (event) {
-
-        }
-    }
-};
 
 class Campuses extends Component {
 
@@ -27,17 +16,30 @@ class Campuses extends Component {
             <h2>Campuses</h2>
             <ul>
                 {this.props.campuses.map(campus => <li key={campus.id}>
-                    <a href={`/campuses/${campus.id}`}>
-                            <div className="col-sm-6 campus center">
+                    <NavLink to={`/campuses/${campus.id}`}>
+                        <div className="col-sm-6 campus center">
                             {campus.name}
-                                <img src={campus.image} className="img-responsive" />
+                            <img src={campus.image} className="img-responsive" />
                             </div>
-                        </a>
+                        </NavLink>
                     </li>
                 )}
             </ul>
         </div>
     }
 }
+
+const mapState = ({ campuses }) => ({ campuses });
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fetchInitialData: () => {
+            dispatch(fetchThings(stateProps.CAMPUSES, acts.GET_CAMPUSES));
+        },
+        handleAdd: function (event) {
+
+        }
+    }
+};
 
 export default withRouter(connect(mapState, mapDispatchToProps)(Campuses));

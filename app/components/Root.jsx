@@ -22,7 +22,7 @@ class Root extends Component {
                 <Route exact path='/students' component={Students} />
                 <Route path='/campuses/:id' component={Campus} />
                 <Route path='/students/:id' component={Student} />
-                <Redirect to='/campuses' />
+                <Redirect to='/campuses/1' />
             </Switch>
         </div>
     }
