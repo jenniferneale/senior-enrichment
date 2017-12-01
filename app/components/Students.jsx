@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { withRouter, NavLink, Link } from 'react-router-dom';
 import { acts, stateProps, fetchThings, deleteThing } from '../reducers';
 
 const mapState = ({ students }) => ({ students });
@@ -42,8 +42,8 @@ class Students extends Component {
                     {this.props.students.map(student =>
                         <tr key={student.id} className="row">
                             <td>{student.id}</td>
-                            <td><a href={`/students/${student.id}`}>{student.name}</a></td>
-                            <td><a href={`/campuses/${student.Campus.id}`}>{student.Campus.name}</a></td>
+                            <td><NavLink to={`/students/${student.id}`}>{student.name}</NavLink></td>
+                            <td><NavLink to={`/campuses/${student.Campus.id}`}>{student.Campus.name}</NavLink></td>
                             <td className={student.id}><button className="btn btn-default" id="x" onClick={this.props.handleRemove}>X</button></td>
                         </tr>
                     )}

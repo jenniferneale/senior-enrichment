@@ -9,3 +9,13 @@ campus {
 #x {
     padding: 1px 8px;
 }
+
+input, select {
+    color: #000000;
+}
+
+aside {
+    border: solid grey;
+    width: 30vw;
+    float:right;
+}

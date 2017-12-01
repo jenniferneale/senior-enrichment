@@ -31,6 +31,18 @@ api.post('/students', (req, res, next) => {
         .catch(console.error);
 })
 
+api.put('/students/:id', (req, res, next) => {
+    Student.update({
+        name: req.body.name,
+        email: req.body.email,
+        status: req.body.status,
+        campusId: req.body.campusId
+    },
+        { where: { id: req.params.id } })
+        .then(result => res.status(200).send(result))
+        .catch(console.error);
+})
+
 api.delete('/students/:id', (req, res, next) => {
     Student.destroy({
         where: { id: req.params.id }        
@@ -59,6 +71,17 @@ api.post('/campuses', (req, res, next) => {
         name: req.body.name,
         image: req.body.image
     }).then(result => res.status(201).send(result))
+        .catch(console.error);
+})
+
+api.put('/campuses/:id', (req, res, next) => {
+    Campus.update({
+        name: req.body.name,
+        image: req.body.image,
+        status: req.body.status        
+    },
+        { where: { id: req.params.id } })
+        .then(result => res.status(200).send(result))
         .catch(console.error);
 })
 

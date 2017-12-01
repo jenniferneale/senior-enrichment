@@ -14,15 +14,15 @@ class Root extends Component {
 
     render() {
         return <div>
-            <h1>WHATWHAT BITCHES</h1>
+            <h1>Margaret Hamilton Interplanetary Academy of JavaScript</h1>
             <NavBar />
-            <WinterJokes />
+            <aside><WinterJokes /></aside>
             <Switch>                
                 <Route exact path='/campuses' component={Campuses} />
                 <Route exact path='/students' component={Students} />
                 <Route path='/campuses/:id' component={Campus} />
                 <Route path='/students/:id' component={Student} />
-                <Redirect to='/campuses/1' />
+                <Redirect to='/campuses' />
             </Switch>
         </div>
     }
